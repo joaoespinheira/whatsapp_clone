@@ -44,3 +44,9 @@
   justify-content: space-between;
   min-width: 10vw;
 }
+
+.sidebar__chats {
+  flex: 1;
+  background-color: white;
+  overflow: scroll;
+}
