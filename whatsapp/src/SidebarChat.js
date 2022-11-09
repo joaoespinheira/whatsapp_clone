@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./SidebarChat.css";
 import Avatar from "@mui/material/Avatar";
 
-function SidebarChat(addNewChat) {
+function SidebarChat({ addNewChat }) {
   const [seed, setSeed] = useState("");
   useEffect(() => {
     setSeed(Math.floor(Math.random() * 5000));
@@ -17,7 +17,11 @@ function SidebarChat(addNewChat) {
 
   return (
     <>
-      {!addNewChat ? (
+      {addNewChat ? (
+        <div onClick={createChat} className="sidebarChat">
+          <h2>add new chat</h2>
+        </div>
+      ) : (
         <div className="sidebarChat">
           <Avatar
             alt="João Espinheira"
@@ -28,10 +32,6 @@ function SidebarChat(addNewChat) {
             <h2>room name</h2>
             <p>last message...</p>
           </div>
-        </div>
-      ) : (
-        <div onClick={createChat} className="sidebarChat">
-          <h2>add new chat</h2>
         </div>
       )}
     </>
