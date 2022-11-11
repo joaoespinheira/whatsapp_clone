@@ -1,15 +1,27 @@
 import "./App.css";
-import Sidebar from "./Sidebar";
 import Chat from "./Chat";
+import Sidebar from "./Sidebar";
+import { Routes, Route } from "react-router-dom";
+
+import Login from "./Login";
+import { useStateValue } from "./StateProvider";
 
 function App() {
+  const [{ user }, dispatch] = useStateValue();
   return (
     //BEM naming convention
     <div className="app">
-      <div className="app__body">
-        <Sidebar />
-        <Chat />
-      </div>
+      {!user ? (
+        <Login />
+      ) : (
+        <div className="app__body">
+          <Sidebar />
+
+          <Routes>
+            <Route exact path="/rooms/:roomId" element={<Chat />} />
+          </Routes>
+        </div>
+      )}
     </div>
   );
 }
